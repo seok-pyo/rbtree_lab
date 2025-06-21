@@ -30,14 +30,17 @@ rbtree *new_rbtree(void)
 {
   rbtree *p = (rbtree *)calloc(1, sizeof(rbtree));
 
-  node_t *nil_node = (node_t *)calloc(1, sizeof(node_t));
+  node_t *nil_node = (node_t *)calloc(1, sizeof(node_t)); // 힙 영역에 남겨놓기 위해서
+
+  // nil_node를 calloc으로 초기화를 하면 node_t에 있는 멤버 변수들이 모두 초기화가 되는 건가? 0으로 초기화가 되는 건가?
 
   nil_node->left = nil_node->right = nil_node->parent = NULL;
   nil_node->color = RBTREE_BLACK;
 
   p->nil = nil_node;
-
   p->root = p->nil;
+
+  // p->nil->key = NULL;
 
   // p->root = NULL;
 
@@ -52,7 +55,30 @@ rbtree *new_rbtree(void)
 
 node_t *rbtree_insert(rbtree *t, const key_t key)
 {
-  // TODO: implement insert
+
+  // if (t->root->key == NULL)
+  // {
+  //   t->root->key = key;
+  // }
+  if (t->root == t->nil)
+  {
+    t->root->key = key;
+  }
+  else
+  {
+    while (t->root != t->nil)
+    {
+      if (t->root->key < key)
+      {
+        t->root = t->root->left;
+      }
+      else
+      {
+        t->root = t->root->right;
+      }
+    }
+  }
+
   return t->root;
 }
 
