@@ -42,10 +42,6 @@ rbtree *new_rbtree(void)
   p->nil = nil_node;
   p->root = p->nil;
 
-  // p->nil->key = NULL;
-
-  // p->root = NULL;
-
   return p;
 }
 
@@ -60,7 +56,6 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
 
   node_t *new_node = (node_t *)calloc(1, sizeof(node_t));
   node_t *cur = (node_t *)calloc(1, sizeof(node_t));
-  // node_t *pre = (node_t *)calloc(1, sizeof(node_t));
   node_t *pre = t->nil;
   new_node->key = key;
   new_node->color = RBTREE_RED;
@@ -76,7 +71,6 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
     t->root->key = key;
 
     return t->root;
-    // new_node->parent = t->root;
   }
 
   while (cur != t->nil)
@@ -84,20 +78,10 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
     pre = cur;
     if (cur->key < key)
     {
-      // if (cur->right == t->nil)
-      // {
-      //   cur->right = new_node;
-      //   cur->right->parent = cur;
-      // }
       cur = cur->right;
     }
     else
     {
-      // if (cur->left == t->nil)
-      // {
-      //   cur->left = new_node;
-      //   cur->left->parent = cur;
-      // }
       cur = cur->left;
     }
   }
@@ -114,124 +98,8 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
     pre->left = new_node;
   }
 
-  // new_node->parent = cur;
-
-  // 탐색 과정에서
-  // if (t->root == t->nil)
-  // {
-  //   // 루트를 변경하면 안 됨.
-  //   // t->root->key = key;
-  //   // t->root->left = t->nil;
-  //   // t->root->right = t->nil;
-
-  //   // t->root = new_node;
-  //   // t->nil = new_node;
-  //   t->root = new_node;
-  //   // new_node->left = t->nil;
-  //   // new_node->right = t->nil;
-  //   new_node->parent = t->root;
-  //   // cur = t->root;
-  // }
-  // else
-  // {
-  //   while (cur != t->nil)
-  //   {
-  //     if (cur->key < key)
-  //     {
-  //       if (cur->right == t->nil)
-  //       {
-  //         cur->right = new_node;
-  //         cur->right->parent = cur->right;
-  //       }
-  //       else
-  //       {
-  //         cur = cur->right;
-  //       }
-  //       // new_node->parent = cur;
-  //     }
-  //     else
-  //     {
-  //       if (cur->left == t->nil)
-  //       {
-  //         cur->left = new_node;
-  //         cur->left->parent = cur->left;
-  //       }
-  //       else
-  //       {
-  //         cur = cur->left;
-  //       }
-  //     }
-  //     // new_node->parent = cur;
-  //   }
-  // }
   return t->root;
 }
-
-// 첫번째 시도
-// node_t *rbtree_insert(rbtree *t, const key_t key)
-// {
-
-//   // if (t->root->key == NULL)
-//   // {
-//   //   t->root->key = key;
-//   // }
-//   node_t *prev = t->nil;
-//   node_t *nxt = t->nil;
-//   node_t *new_node = (node_t *)malloc(sizeof(new_node)); // 노드 동적 할당
-//   // new_node = t->nil;
-//   new_node->key = key;
-//   new_node->color = RBTREE_RED;
-
-//   nxt = t->root;
-
-//   if (t->root == t->nil)
-//   {
-//     t->root->key = key;
-//     // t->nil->left = NULL;
-//     // t->nil->right = NULL;
-
-//     t->root->left = t->nil;
-//     t->root->right = t->nil;
-//   }
-//   else
-//   {
-//     while (nxt != t->nil)
-//     {
-//       if (nxt->key < key)
-//       {
-//         prev = nxt;
-//         nxt = nxt->left;
-//       }
-//       else
-//       {
-//         prev = nxt;
-//         nxt = nxt->right;
-//       }
-//     }
-//   }
-
-//   if (prev->color == RBTREE_BLACK)
-//   {
-//     if (prev->key < key)
-//     {
-//       t->root->right = new_node;
-//     }
-//     else
-//     {
-//       t->root->left = new_node;
-//     }
-//   }
-//   else
-//   {
-//     // Case.1
-
-//     // Case.2
-
-//     // Case.3
-//   }
-
-//   return t->root;
-// }
 
 // node_t *rbtree_find(const rbtree *t, const key_t key)
 // {
