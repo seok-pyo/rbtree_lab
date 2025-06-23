@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "rbtree_visualizer.h": "c",
+    "stdio.h": "c",
+    "rbtree.h": "c"
+  }
+}
