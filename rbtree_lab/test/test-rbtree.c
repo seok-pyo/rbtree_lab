@@ -1,4 +1,5 @@
 #include <assert.h>
+// #include "../src/rbtree.h"
 #include <rbtree.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -125,7 +126,7 @@ void test_minmax(key_t *arr, const size_t n)
   assert(q != NULL);
   assert(q->key == arr[n - 1]);
 
-  rbtree_erase(t, p);
+  rbtree_erase(t, p); // 파일 erase
   p = rbtree_min(t);
   assert(p != NULL);
   assert(p->key == arr[1]);
@@ -415,11 +416,11 @@ void test_find_erase_rand(const size_t n, const unsigned int seed)
 int main(void)
 {
   test_init();
-  // test_insert_single(1024);
+  test_insert_single(1024);
   // test_find_single(512, 1024);
   // test_erase_root(128);
   // test_find_erase_fixed();
-  // test_minmax_suite();
+  test_minmax_suite();
   // test_to_array_suite();
   // test_distinct_values();
   // test_duplicate_values();

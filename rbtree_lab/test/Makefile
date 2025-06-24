@@ -28,7 +28,7 @@ visualize: $(VISUALIZE)
 EXEC_test      := $(notdir $(TARGET))
 EXEC_visualize := $(notdir $(VISUALIZE))
 
-run-%: % 
+run-%: %
 	@echo "→ Running $*"
 	@cd $(OUT_DIR) && ./bin/$(EXEC_$*)
 

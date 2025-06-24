@@ -61,6 +61,24 @@ int main()
         // rbtree_to_svg_specific(t->root,t->nil,img_file_buffer);  // 상세 이미지 출력 하는 함수
     }
 
+    // rbtree_insert(t, 3);
+    // sprintf(img_file_buffer, "imgs/serial_%d.svg", 0);
+    // printf("\n--- %d번째 노드 삽입 ---\n", 0);
+    // rbtree_insert(t, 4);
+    // sprintf(img_file_buffer, "imgs/serial_%d.svg", 1);
+    // printf("\n--- %d번째 노드 삽입 ---\n", 1);
+    // rbtree_insert(t, 1);
+    // sprintf(img_file_buffer, "imgs/serial_%d.svg", 2);
+    // printf("\n--- %d번째 노드 삽입 ---\n", 2);
+    // rbtree_insert(t, 2);
+    // sprintf(img_file_buffer, "imgs/serial_%d.svg", 3);
+    // printf("\n--- %d번째 노드 삽입 ---\n", 3);
+    // rbtree_insert(t, 5);
+    // sprintf(img_file_buffer, "imgs/serial_%d.svg", 4);
+    // printf("\n--- %d번째 노드 삽입 ---\n", 4);
+    // print_tree_horizontal(t->root, t->nil, 0);
+    // rbtree_to_svg(t->root, t->nil, img_file_buffer);
+
     // delete_rbtree(t);
     // t = new_rbtree();
     // 10개의 랜덤 원소를 넣는 테스트
