@@ -213,9 +213,8 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
         new_node->parent->color = RBTREE_BLACK;
         new_node->parent->parent->color = RBTREE_RED;
         // 수정
-        left_rotate(t, new_node);
-        // 그냥 바로 left_rotate를 하면 왜 문제가 생기는 거지?
-        // left_rotate(t, new_node->parent->parent);
+        // left_rotate(t, new_node);
+        left_rotate(t, new_node->parent->parent);
       }
     }
   }
@@ -344,9 +343,74 @@ node_t *rbtree_max(const rbtree *t)
   return answer;
 }
 
+void rbtree_transplant(rbtree *t, node_t *u, node_t *v) // *u 이렇게 값을 받는 건 실제 값을 받는다는 의미.
+{
+  if (u->parent == t->nil)
+  {
+    t->root;
+  }
+  else if (u == u->parent->left)
+  {
+    u->parent->left = v;
+  }
+  else
+  {
+    u->parent->right = v;
+  }
+  v->parent = u->parent;
+}
+
+void rbtree_fixup(rbtree *t, node_t *x)
+{
+  node_t *w = t->nil;
+
+  while (x != t->root && x->color == RBTREE_BLACK)
+  {
+    if (x == x->parent->left)
+    {
+      w = x->parent->right;
+
+      if (w->color == RBTREE_RED)
+      {
+        w->color = RBTREE_BLACK;
+        x->parent->color = RBTREE_RED;
+        left_rotate(t, x->parent);
+        w = x->parent->right;
+      }
+      if (w->)
+    }
+  }
+}
+
 int rbtree_erase(rbtree *t, node_t *p)
 {
-  // TODO: implement erase
+  node_t *y = p;
+  node_t *x = t->nil;
+  color_t original_color = p->color;
+
+  if (p->left == t->nil)
+  {
+    x = p->right;
+    rbtree_transplant(t, y, y->right);
+  }
+  else if (y->right == t->nil)
+  {
+    x = p->left;
+    rbtree_transplant(t, p, p->left);
+  }
+  else
+  {
+    x->parent = y;
+    rbtree_transplant(t, p, y);
+    y->left = p->left;
+    y->left->parent = y;
+    y->color = p->color;
+  }
+  if (original_color == RBTREE_BLACK)
+  {
+    rbtree_fixup(t, x);
+  }
+
   return 0;
 }
 
