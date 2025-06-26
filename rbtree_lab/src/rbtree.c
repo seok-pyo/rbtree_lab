@@ -2,6 +2,9 @@
 
 #include <stdlib.h>
 
+//////////////////////////////// 코드를 구현하면서 느낀 점들이나 생각들을 지우지 않았습니다.                ////////////////////////////////
+//////////////////////////////// init, insert, min/max 함수까지 구현했고, erase는 구현하지 못했습니다. ////////////////////////////////
+
 // typedef enum
 // {
 //   RBTREE_BLACK,
@@ -55,7 +58,7 @@ void delete_rbtree(rbtree *t)
 void left_rotate(rbtree *t, node_t *x)
 {
   // 선들이 추상적인 부분이 있음.
-  // 혹시 끊어지지 않은 포인터나 연결이 있나? 걱정 될 수도.
+  // 혹시 끊어지지 않은 포인터나 연결이 있나?
   node_t *y = x->right;
   x->right = y->left;
   if (y->left != t->nil)
@@ -222,6 +225,8 @@ node_t *rbtree_insert(rbtree *t, const key_t key)
   return t->root;
 }
 
+//////////////////////////////// 아래 코드는 insert 함수를 구현하려고 했던 삽질했던 코드인데, 구현 과정이어서 남겨두었습니다. ////////////////////////////////
+
 // while (cur->parent->color == RBTREE_RED)
 // {
 //   if (pre->parent->left->color == RBTREE_RED && pre->parent->right->color == RBTREE_RED)
@@ -377,7 +382,7 @@ void rbtree_fixup(rbtree *t, node_t *x)
         left_rotate(t, x->parent);
         w = x->parent->right;
       }
-      if (w->)
+      // 추가 구현 필요
     }
   }
 }
